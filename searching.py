@@ -43,26 +43,18 @@ def test_auth():
         from GitCheck_settings import email
         from GitCheck_settings import api
         from GitCheck_settings import auth
-        from GitCheck_settings import gitusr
-        from GitCheck_settings import gitemail
-        from GitCheck_settings import gitpwd
     else:
         # prompts user to input settings information for API calls
-        with open('GitCheck_settings.py', 'w') as f:
+        with open('GitCheck_settings.py', 'w+') as f:
             email = input("Enter Holberton email: ")
             pwrd = input("Enter Holberton password: ")
             api = input("Enter Holberton API key: ")
-            gitusr = input("Enter GitHub username: ")
-            gitemail = input("Enter GitHub email: ")
-            gitpwd = input("Enter GitHub password: ")
             auth = get_auth(email, api, pwrd)
             shebang_str = "#!/usr/bin/python3\n"
             holb_str = "email = '{}'\npwrd = '{}'\napi = '{}'\n".format(
                 email, pwrd, api)
             auth_str = "auth = '{}'\n".format(auth)
-            git_str = "gitusr = '{}'\ngitemail = '{}'\ngitpwd = '{}'\n".format(
-                gitusr, gitemail, gitpwd)
-            f.write(shebang_str + holb_str + auth_str + git_str)
+            f.write(shebang_str + holb_str + auth_str)
 
     # determines if Holberton authentication token is valid
     check = requests.get('https://intranet.hbtn.io/users/me.json',
@@ -76,6 +68,4 @@ def test_auth():
             holb_str = "email = '{}'\npwrd = '{}'\napi = '{}'\n".format(
                 email, pwrd, api)
             auth_str = "auth = '{}'\n".format(auth)
-            git_str = "gitusr = '{}'\ngitemail = '{}'\ngitpwd = '{}'\n".format(
-                gitusr, gitemail, gitpwd)
-            f.write(shebang_str + holb_str + auth_str + git_str)
+            f.write(shebang_str + holb_str + auth_str)
