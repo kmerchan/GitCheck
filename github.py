@@ -6,12 +6,14 @@ except ImportError as err:
     print(err)
     exit()
 
+
 def get_changes(repo):
     """ get diff of file changes """
     changed = repo.is_dirty(untracked_files=True)
     diff = repo.git.diff(repo.head.commit.tree)
 
     return changed, diff
+
 
 def get_commit_msg():
     """ make a message for a commit """
@@ -27,16 +29,18 @@ def get_commit_msg():
         msg = get_commit_msg()
     return msg
 
+
 def get_files(args):
     """ get list of files to commit """
     from sys import argv
-    
-    files = args[2:] 
+
+    files = args[2:]
     if files == []:
         print("No files given")
         exit()
     if 'README.md' not in files:
         files.append('README.md')
+
 
 # Define argument structure
 # assume projID file_list or directory
