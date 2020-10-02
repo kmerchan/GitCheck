@@ -1,13 +1,27 @@
 # GitCheck
 
-Python Command line tool to return results from the Holberton Checker API when a task file is pushed.
+Python Command line tool to add, commit, and push files to GitHub and return results from the Holberton Checker API in one program.
 
 ---
-## Requirements
+### Table of Contents
+* [Installation and Usage](## Installation and Usage)
+* [Code Description](## Code Description)
+* [Authors](## Authors)
+
+## Installation and Usage
+To use the GitCheck program:
+* Get a copy of this repository with `git clone https://github.com/scan3ls/GitCheck.git`
+* Ensure you have the [basic requirements](### Requirements) to run the program
+* To install dependencies, run the program `~/GitCheck/install.sh`
+* Move into the directory with files to add, commit, push, and check and run the program with `~/GitCheck/gitcheck.py <files>`, where <files> is the list of files to check
+* The first time running the program, the user will be prompted to input their Holberton credentials to request an authentication token. Users will only need to provide their credentials once.
+* If there are changes to credentials, please remove the settings file with `rm GitClone_settings.py` in the GitCheck respository. This will re-prompt the user for credentials the next time the program is run.
+
+### Requirements
 - Python >= 3.4
 - Git 1.7.0 or newer
 
-## Dependencies
+#### Dependencies
 
 [GitPython](https://gitpython.readthedocs.io/en/stable/)
 
@@ -21,55 +35,25 @@ Python Command line tool to return results from the Holberton Checker API when a
 
     python -m pip install requests
 
-# 
-### Things to think about
 
-- What information does the script need?
-- Will it be given via argument, environment variable, or config/settings file? 
+## Code Description
+[searching.py](/searching.py) - accesses Holberton credentials or prompts user for credentials to validate and/or get authorization token for Holberton API
+* `get_auth` method - gets authorization token through POST request with Holberton credentials as data
+* `test_auth` method - imports variables from saved file or promps user to input credentials, authorizes authentication token, and saves current credentials to file
 
-# 
-## What needs to Happen with Git?
+[cwd.py](/cwd.py) - gets project id, project directory name, and project repository name from current working directory
+* `pid_from_cwd` method - returns project's id based on the current working directory
+* `parent_from_cwd` method - returns both the parent repository name and parent project directory based on the current working directory
 
-### Section 0: Installation
-- Can the user run the script without the proper dependencies? If yes, will the script solicit a response to automatically run a setup process?
+[github.py](/github.py) - handles adding, commiting, and pushing files to GitHub with GitPython
+* 
 
-### Section 1: Who am I?
-- How will the script know the GitHub user and the password?
+## Bugs
+If project names or ids are changed, or new projects are added, the repository lists of current projects and project ids will need to be manually updated. In the future, this can be optimized by adding a Holberton API endpoint that returns all projects for a repository.
 
-### Section 2: Managing Repos
-- Does the script need to initialize a new repo, open a existing one on the local machine, or clone a remote repo from GitHub?
-
-### Section 3: Working in a Repo
-- What are the files that changed?
-- Want branch is the current working tree connected to?
-- Am I pushing?
-- How many files will be staged and committed?
-- How will the user fill in a commit message?
-- Will the user be prompted if the message is to verbose?
-
-# 
-## What needs to Happen with Checker API?
-
-### Section 0: Installation
-- Can the user run the script without the proper dependencies? If yes, will the script solicit a response to automatically run a setup process?
-
-### Section 1: Respect mAH Authorita!
-- Check user authorization with auth_token.
-
-### Section 2: Do I even?
-- Is the checker available?
-- Do we check with API yet?
-
-### Section 3: Get tasks to check
-- Use Holberton Checker API to get a list of tasks.
-- Get file names of recently staged/committed files.
-- Do we check all tasks? Recently pushed tasks? Recently push and previously push tasks?
-
-### Section 4: Request corrections for tasks
-- Use Holberton Checker API to request a correction for a task or list of tasks.
-
-### Section 5: Compile results of corrections
-- Store relevant data from correction responses into data structures.
-
-### Section 6: Display results
-- Parse and Display relevant data from correction responses
+## Authors
+* Colson Scott - [GitHub](https://github.com/octopusHugz) / [email](colson.scott@holbertonschool.com)
+* Gunter Pearson - [GitHub](https://github.com/GunterPearson) / [email](gunter.pearson@holbertonschool.com)
+* Kelsie Merchant - [GitHub](https://github.com/kmerchan) / [email](kelsie.merchant@holbertonschool.com)
+* Lance Burklin - [GitHub](https://github.com/Lancewburklin) / [email](lance.burklin@holbertonschool.com)
+* Logan Scanlon - [GitHub](https://github.com/scan3ls) / [email](logan.scanlon@holbertonschool.com)

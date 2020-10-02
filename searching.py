@@ -1,9 +1,9 @@
 #!/usr/bin/python3
 """
-This is a program to set-up settings variables
-for GitHub API and Holberton API and savse to file.
-Program also checks current authentication key, if exits,
-for Holberton API and creates new key if expired.
+This is a program to set-up Holberton credentials
+for accessing the Holberton API and saves them to file.
+Program also checks current authentication token, if exits,
+and creates new token if expired.
 """
 
 import requests

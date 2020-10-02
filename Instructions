@@ -1,0 +1,22 @@
+Welcome to GitCheck!
+
+To run the program, please clone the repository using `git clone`
+on your local terminal.
+
+You can install all dependent installations and start the program
+by running `~/GitCheck/install.sh`.
+
+Now, you can move into the directory with files that you would like to
+add, commit, push, and check. Inside the directory, run the program
+with `~/GitCheck/gitcheck.py <files>` where <files> are the files you
+are ready to check.
+
+The first time running the program, you will be prompted to input your
+Holberton credentials so the program can get and use an authorization
+token. However, this will only be necessary the first time you run the
+program.
+
+If there are changes to your password or other credentials, please
+remove the settings file with `rm GitClone_settings.py` in the GitCheck
+respository and you will be re-prompted to input your credentials the
+next time you run the program.
