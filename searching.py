@@ -43,29 +43,26 @@ def test_auth():
         from GitCheck_settings import email
         from GitCheck_settings import api
         from GitCheck_settings import auth
-        from GitCheck_settings import gituser
+        from GitCheck_settings import gitusr
         from GitCheck_settings import gitemail
-        from GitCheck_settings import gitpwrd
+        from GitCheck_settings import gitpwd
     else:
         # prompts user to input settings information for API calls
         with open('GitCheck_settings.py', 'w') as f:
             email = input("Enter Holberton email: ")
             pwrd = input("Enter Holberton password: ")
             api = input("Enter Holberton API key: ")
-            gituser = input("Enter GitHub username: ")
+            gitusr = input("Enter GitHub username: ")
             gitemail = input("Enter GitHub email: ")
-            gitpwrd = input("Enter GitHub password: ")
+            gitpwd = input("Enter GitHub password: ")
             auth = get_auth(email, api, pwrd)
-            f.write("#!/usr/bin/python3\n \
-            email = '{}'\n \
-            pwrd = '{}'\n \
-            api = '{}'\n \
-            auth = '{}'\n \
-            gituser = '{}'\n \
-            gitemail = '{}'\n \
-            gitpwrd = '{}'\n"
-                    .format(email, pwrd, api, auth,
-                            gituser, gitemail, gitpwrd))
+            shebang_str = "#!/usr/bin/python3\n"
+            holb_str = "email = '{}'\npwrd = '{}'\napi = '{}'\n".format(
+                email, pwrd, api)
+            auth_str = "auth = '{}'\n".format(auth)
+            git_str = "gitusr = '{}'\ngitemail = '{}'\ngitpwd = '{}'\n".format(
+                gitusr, gitemail, gitpwd)
+            f.write(shebang_str + holb_str + auth_str + git_str)
 
     # determines if Holberton authentication token is valid
     check = requests.get('https://intranet.hbtn.io/users/me.json',
@@ -75,16 +72,13 @@ def test_auth():
         # creates new authentication token if expired and saves to file
         auth = get_auth(email, api, pwrd)
         with open('GitCheck_settings.py', 'w') as f:
-            f.write("#!/usr/bin/python3\n \
-            email = '{}'\n \
-            pwrd = '{}'\n \
-            api = '{}'\n \
-            auth = '{}'\n \
-            gituser = '{}'\n \
-            gitemail = '{}'\n \
-            gitpwrd = '{}'\n"
-                    .format(email, pwrd, api, auth,
-                            gituser, gitemail, gitpwrd))
+            shebang_str = "#!/usr/bin/python3\n"
+            holb_str = "email = '{}'\npwrd = '{}'\napi = '{}'\n".format(
+                email, pwrd, api)
+            auth_str = "auth = '{}'\n".format(auth)
+            git_str = "gitusr = '{}'\ngitemail = '{}'\ngitpwd = '{}'\n".format(
+                gitusr, gitemail, gitpwd)
+            f.write(shebang_str + holb_str + auth_str + git_str)
 
 # runs test_auth function to initialize variables and check authentication
 test_auth()
