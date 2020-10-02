@@ -79,6 +79,3 @@ def test_auth():
             git_str = "gitusr = '{}'\ngitemail = '{}'\ngitpwd = '{}'\n".format(
                 gitusr, gitemail, gitpwd)
             f.write(shebang_str + holb_str + auth_str + git_str)
-
-# runs test_auth function to initialize variables and check authentication
-test_auth()
