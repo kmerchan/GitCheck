@@ -51,7 +51,8 @@ def git_push():
     files = get_files(argv)
 
     # TODO: change path to return of a funcion call
-    path = '~/{}'.format(parent_from_cwd())
+    parent, project_dir = parent_from_cwd()
+    path = '~/{}'.format(parent)
     repo = git.Repo(path)
     result, diff = get_changes(repo)
     if result is False:
@@ -63,7 +64,14 @@ def git_push():
     if msg is None:
         exit()
     try:
-        repo.index.add(files)
+        import os
+        for item in files:
+            # print('try',
+            #    os.path.join(repo.working_tree_dir, project_dir, item)
+            # )
+            repo.index.add(
+                os.path.join(repo.working_tree_dir, project_dir, item)
+            )
     except FileNotFoundError as err:
         print("files", files)
         print("Add error", err)

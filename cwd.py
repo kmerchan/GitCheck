@@ -26,4 +26,5 @@ def pid_from_cwd():
 def parent_from_cwd():
     """Returns the parent directory based on the current working directory"""
     parent = getenv('PWD').split('/')[-2]
-    return parent
+    project_dir = getenv('PWD').split('/')[-1]
+    return parent, project_dir
