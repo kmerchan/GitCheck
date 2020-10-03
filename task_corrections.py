@@ -13,7 +13,7 @@ with open('../../GitCheck/GitCheck_settings.py', 'r') as f:
         line = line.split('=')
         if line[0] == "auth ":
             line[0] = line[0][:-1]
-            line[1] = line[1][1:]
+            line[1] = line[1][2:-2]
             auth = line[1]
 
 

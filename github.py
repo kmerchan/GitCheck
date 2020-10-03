@@ -8,7 +8,6 @@ from sys import argv
 try:
     import git
 except ImportError as err:
-    # TODO: auto setup dependenicies
     print(err)
     exit()
 
