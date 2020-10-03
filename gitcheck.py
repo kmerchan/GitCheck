@@ -6,11 +6,10 @@ main program uses functions to
 and (3) request correction and return check results
 """
 
-from github import git_push
-from searching import test_auth
-from task_corrections import request_correction
-
 if __name__ == "__main__":
+    from github import git_push
+    from searching import test_auth
     test_auth()
+    from task_corrections import request_correction
     git_push()
     request_correction()

@@ -7,7 +7,14 @@ for all files recently added, committed, and pushed
 from cwd import pid_from_cwd
 import requests
 from sys import argv
-from GitCheck_settings import auth
+
+with open('../../GitCheck/GitCheck_settings.py', 'r') as f:
+    for line in f:
+        line = line.split('=')
+        if line[0] == "auth ":
+            line[0] = line[0][:-1]
+            line[1] = line[1][1:]
+            auth = line[1]
 
 
 def request_correction():

@@ -37,7 +37,7 @@ def test_auth():
     prompts the user to input their information
     and saves for future use
     """
-    if path.exists('GitCheck_settings.py'):
+    if path.exists('../../GitCheck/GitCheck_settings.py'):
         # imports existing settings variables from file
         from GitCheck_settings import pwrd
         from GitCheck_settings import email
@@ -45,7 +45,7 @@ def test_auth():
         from GitCheck_settings import auth
     else:
         # prompts user to input settings information for API calls
-        with open('GitCheck_settings.py', 'w+') as f:
+        with open('../../GitCheck/GitCheck_settings.py', 'w+') as f:
             email = input("Enter Holberton email: ")
             pwrd = input("Enter Holberton password: ")
             api = input("Enter Holberton API key: ")
@@ -63,7 +63,7 @@ def test_auth():
     if check.status_code == 401:
         # creates new authentication token if expired and saves to file
         auth = get_auth(email, api, pwrd)
-        with open('GitCheck_settings.py', 'w') as f:
+        with open('../../GitCheck/GitCheck_settings.py', 'w') as f:
             shebang_str = "#!/usr/bin/python3\n"
             holb_str = "email = '{}'\npwrd = '{}'\napi = '{}'\n".format(
                 email, pwrd, api)
