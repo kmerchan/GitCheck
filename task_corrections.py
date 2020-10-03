@@ -36,11 +36,11 @@ def request_correction():
             correction_res_id = requests.post(
                 correction_url, params=payload).json().get('id')
             result_base_url = 'https://intranet.hbtn.io/correction_requests/'
-            correction_result_url = '{}{}.json?auth_token={}'.format(
-                result_base_url, correction_res_id, auth)
+            # correction_result_url = '{}{}.json?auth_token={}'.format(
+            #     result_base_url, correction_res_id, auth)
             # static route to return a correction result we know
-            # correction_result_url = '{}3591396.json?auth_token={}'.format(
-            #     correction_base_url, auth)
+            correction_result_url = '{}3591396.json?auth_token={}'.format(
+                correction_base_url, auth)
             correction_result = requests.get(
                 correction_result_url, params=payload).json()
             checks = correction_result.get('result_display').get('checks')
