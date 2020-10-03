@@ -4,15 +4,16 @@ Python Command line tool to add, commit, and push files to GitHub and return res
 
 ---
 ### Table of Contents
-* [Installation and Usage](## Installation and Usage)
-* [Code Description](## Code Description)
-* [Authors](## Authors)
+* [Installation and Usage](##installation)
+* [Code Description](##code)
+* [Bugs](##bugs)
+* [Authors](##authors)
 
 ## Installation and Usage
 To use the GitCheck program:
 * Get a copy of this repository with `git clone https://github.com/scan3ls/GitCheck.git`
-* Ensure you have the [basic requirements](### Requirements) to run the program
-* To install dependencies, run the program `~/GitCheck/install.sh`
+* Ensure you have the [basic requirements](###requirements) to run the program
+* To install [dependencies](####dependencies), run the program `~/GitCheck/install.sh`
 * Move into the directory with files to add, commit, push, and check and run the program with `~/GitCheck/gitcheck.py <files>`, where <files> is the list of files to check
 * The first time running the program, the user will be prompted to input their Holberton credentials to request an authentication token. Users will only need to provide their credentials once.
 * If there are changes to credentials, please remove the settings file with `rm GitClone_settings.py` in the GitCheck respository. This will re-prompt the user for credentials the next time the program is run.
@@ -46,7 +47,15 @@ To use the GitCheck program:
 * `parent_from_cwd` method - returns both the parent repository name and parent project directory based on the current working directory
 
 [github.py](/github.py) - handles adding, commiting, and pushing files to GitHub with GitPython
-* 
+* `get_changes` method - determines if files have differences with current GitHub files
+* `get_commit_msg` method - prompts the user for commit message
+* `get_files` method - gets list of files to check from input arguments and ensures README.md is included
+* `git_push` method - gets repository and commit message, then adds, commits, and pushes files to GitHub
+
+[task_corrections.py](/task_corrections.py) - utilizes Holberton API to run the checker correction and return result
+* `request_correction` method - requests correction based on task ID and returns check results
+
+[gitcheck.py](/gitcheck.py) - main program that calls on previous functions to (1) verify or get authentication token, (2) add, commit, and push files passed in as arguments to GitHub, and (3) request correction and return check results.
 
 ## Bugs
 If project names or ids are changed, or new projects are added, the repository lists of current projects and project ids will need to be manually updated. In the future, this can be optimized by adding a Holberton API endpoint that returns all projects for a repository.

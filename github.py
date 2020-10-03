@@ -1,4 +1,9 @@
 #!/usr/bin/python3
+"""
+Defines functions for git add, git commit, and git push
+files using GitPython
+"""
+
 from sys import argv
 try:
     import git
@@ -42,15 +47,12 @@ def get_files(args):
     return files
 
 
-# Define argument structure
-# assume projID file_list or directory
 def git_push():
     """ Commit and push files """
     from cwd import parent_from_cwd
 
     files = get_files(argv)
 
-    # TODO: change path to return of a funcion call
     parent, project_dir = parent_from_cwd()
     path = '~/{}'.format(parent)
     repo = git.Repo(path)
